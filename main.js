@@ -34,23 +34,29 @@ function addTodo(event) {
 
     // Get new todo from the new todo input field.
     const inputOne = document.querySelector('#new-todo').value;
-
+    console.log(inputOne)
     // Clear the input field of all text.
-    todos.push(inputOne); 
+    
     
 
     // Put the todo and its "done-ness" in their respective arrays.
-    console.log(todos);
+    todos.push(inputOne); 
+    
 
     // Create a new html element and put our new todo's text in there.
-    
+    const newElement = document.createElement('li');
+    newElement.innerText = isDone;
     
     // Add an event listener on the newly created html element to launch
+    document.querySelector('#new-element')
+    .addEventListener('click', addTodo);
     // `toggleDone` when it's clicked.
-
-
+    
+    
     // Put our new element on the list part of our page!
-
+    document.getElementById('#new-todo').appendChild(newElement);
+    
+    
 }
 
 
