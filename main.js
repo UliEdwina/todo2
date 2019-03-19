@@ -34,13 +34,15 @@ function addTodo(event) {
 
     // Get new todo from the new todo input field.
     const inputOne = document.querySelector('#new-todo').value;
-    console.log(inputOne)
-    // Clear the input field of all text.
     
+    // Clear the input field of all text.
+    todos.splice(inputOne);
     
 
     // Put the todo and its "done-ness" in their respective arrays.
     todos.push(inputOne); 
+    isDone.push(inputOne)
+    
     
 
     // Create a new html element and put our new todo's text in there.
@@ -48,13 +50,13 @@ function addTodo(event) {
     newElement.innerText = inputOne;
     
     // Add an event listener on the newly created html element to launch
-    document.querySelector('#new-element')
-    .addEventListener('click', addTodo);
+    
     // `toggleDone` when it's clicked.
+    newElement.addEventListener('click', toggleDone);
     
     
     // Put our new element on the list part of our page!
-    document.getElementById('new-element').appendChild(newElement);
+    document.getElementById('todo-list').appendChild(newElement);
     
     
 }
@@ -63,11 +65,15 @@ function addTodo(event) {
 function clearAllTodos(event) {
     // Stop page from reloading on button click.
 
-    
+    event.preventDefault();
     // Remove all todos from BOTH arrays.
-
+    const removeBoth  = document.querySelector('#new-todo').innerText;
+   // index = parseInt(removeBoth, 10)
+   
     
     // Remove all todos from the html.
+    todos.splice(); 
+    
     // You'll have to write that function too, but we'll call it here:
     removeAllChildrenOfOl();
 }
@@ -91,6 +97,9 @@ function clearDoneTodos(event) {
     /*
         Now remove the done todos from the html.
 
+        const removeBoth  = document.querySelector('#new-todo').innerText;
+        index = parseInt(removeBoth, 10)
+
         Although it's not technically efficient as there is a slight time cost
         to rendering new elements on a web page, you might think not of removing
         certain todos but making a new set of lis to replace what we have. You
@@ -109,15 +118,24 @@ function toggleDone(event) {
     // applies to buttons.
     
     // Grab the HTML element that was clicked.
+    let target = event.target.style.textDecoration = 'line-through';
+    target = true;
+console.log('hey')
+   
     // If you don't know, the event parameter has what you need... somewhere.
 
 
     // Find the index of the array that this todo resides in. There are a couple
     // ways to do this, and I'm sure you'll figure one out!
-
+    // isDone.findIndex(todos);
+    
+    
 
     // *IF* it's not done yet, apply strikethrough. Otherwise, take that
     // strikethrough away!
+    //if (let i = 0 < todos.length; i++){
+      //  event.target.style.textDecoration = 'none';
+   // }
 
 
     // Toggle the "done-ness" of the same todo, using the isDone array.
