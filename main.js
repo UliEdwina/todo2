@@ -45,7 +45,7 @@ function addTodo(event) {
 
     // Create a new html element and put our new todo's text in there.
     const newElement = document.createElement('li');
-    newElement.innerText = isDone;
+    newElement.innerText = inputOne;
     
     // Add an event listener on the newly created html element to launch
     document.querySelector('#new-element')
@@ -54,7 +54,7 @@ function addTodo(event) {
     
     
     // Put our new element on the list part of our page!
-    document.getElementById('#new-todo').appendChild(newElement);
+    document.getElementById('new-element').appendChild(newElement);
     
     
 }
