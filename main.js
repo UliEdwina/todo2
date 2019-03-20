@@ -41,7 +41,7 @@ function addTodo(event) {
 
     // Put the todo and its "done-ness" in their respective arrays.
     todos.push(inputOne); 
-    isDone.push(inputOne)
+    isDone.push(false);
     
     
 
@@ -80,6 +80,7 @@ function clearAllTodos(event) {
 
 function clearDoneTodos(event) {
     // Stop page from reloading on button click.
+    event.preventDefault();
 
     /*
         Find which todos need to be removed and remove them from BOTH arrays.
@@ -91,8 +92,23 @@ function clearDoneTodos(event) {
         One way to do this is to build up a new array. Give that a try first!
 
     */
+   const todos2 = [];
+   //let i = todos.indexOf(todos2.innertext);
+   for(let i= 0; 1 < todos.length; i++){
+   
+    if(isDone[i] === false ){
+           
+            todos2.push(todos[i]);
+        }
+    }
+    todos = todos2;
 
-
+    
+    
+    //const doneTodos  = document.querySelector('#todo-list').innerText;
+       
+       
+       
 
     /*
         Now remove the done todos from the html.
@@ -118,24 +134,28 @@ function toggleDone(event) {
     // applies to buttons.
     
     // Grab the HTML element that was clicked.
-    let target = event.target.style.textDecoration = 'line-through';
-    target = true;
-console.log('hey')
+    const currentLi = event.target;
+    
+
    
     // If you don't know, the event parameter has what you need... somewhere.
 
 
     // Find the index of the array that this todo resides in. There are a couple
     // ways to do this, and I'm sure you'll figure one out!
-    // isDone.findIndex(todos);
+    const i = todos.indexOf(currentLi.innerText);
     
     
 
     // *IF* it's not done yet, apply strikethrough. Otherwise, take that
     // strikethrough away!
-    //if (let i = 0 < todos.length; i++){
-      //  event.target.style.textDecoration = 'none';
-   // }
+    if (isDone[i]){
+        isDone[i] = false;
+        currentLi.style.textDecoration = 'none';
+    }else{
+        currentLi.style.textDecoration = 'line-through';
+        isDone[i] = true;
+    }
 
 
     // Toggle the "done-ness" of the same todo, using the isDone array.
@@ -144,9 +164,11 @@ console.log('hey')
 
 function removeAllChildrenOfOl() {
     // Grab the ol.
-
-
+    const olGrab = document.getElementById('#todo-list').innerText;
+    let i = oleGrab -1;
+    
     // Remove all its children.
+    olGrab.removeChild(olGrab.childNodes[i]);
     // The way I like to do that is to continue to remove children as long as
     // there are some to remove.
     // Look at the methods `.hasChildNodes` and `removeChild`.
